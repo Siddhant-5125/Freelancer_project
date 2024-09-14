@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bcard.css">
+    <title>Project Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    color: #333333;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+
+.project {
+    height: 80%;
+    width: 80%;
+    background-color: #d2cbcb;
+    border-radius: 20px;
+    padding: 2%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    color: #333333;
+}
+
+.project-left, .project-right {
+    width: 48%;
+    height: 90%;
+    margin: 1%;
+    border-radius: 20px;
+    background-color: #d7dde1;;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.project-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-left-img {
+    width: 60%;
+    height: 70%;
+    background-image: url('https://zeevector.com/wp-content/uploads/TCS-Logo-White-Transparent-768x213.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 5px solid #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project-left-txt {
+    text-align: center;
+    color: #333333;
+}
+
+.project-left-txt h1 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.project-left-txt h2 {
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+.project-left button{
+    margin-top: 10%;
+    height: 25%;
+    width: 70%;
+    font-size: 1.3rem;
+    border-radius: 50px;
+}
+.project-right {
+    background-color: #ffffff;
+    color: #333333;
+    padding: 2%;
+}
+
+.project-right h1 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    /* color: #4a00e0; */
+}
+
+.project-right-txt {
+    background-color: #f8f8f8;
+    border-radius: 20px;
+    padding: 6%;
+    height: calc(100% - 40px);
+    overflow-y: auto;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-right-txt h3 {
+    font-weight: 300;
+    line-height: 1.8;
+    color: #333333;
+}
+
+    </style>
+</head>
+<body>
+<div class=" w-full max-w-full mx-auto"  >
+        <div class="flex flex-col max-w-full p-5 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 border-b" style="background-color:white">
+            <div class="flex flex-row items-center justify-between lg:justify-start">
+                <a href="{% url 'home' %}" class="text-3xl font-bold tracking-tighter text-blue-600 transition duration-500 ease-in-out transform tracking-relaxed lg:pr-8"> Freelancers </a>
+            </div>
+
+            <nav class="flex-col items-center flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row lg:pl-2">
+
+
+                <div class="inline-flex items-center gap-2 list-none lg:ml-auto">
+                    {% if user.is_authenticated %}
+                    <p>{{user.email}}</p>
+                    {% if user.freelancer.profile_pic %}
+                    <img class="w-10 border rounded-full mr-4" src="{{ user.freelancer.profile_pic.url }}" alt="Profile pic">
+                    {% endif %}
+                    {% if user.business.profile_pic %}
+                    <img class="w-10 border rounded-full mr-4" src="{{ user.business.profile_pic.url }}" alt="Profile pic">
+                    {% endif %}
+                    <form action="{% url 'account_logout' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="items-center block px-10 py-2.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Logout</button>
+                    </form>
+                    {% else %}
+                    <a href="{% url 'account_login' %}">
+                        <button class="items-center block px-10 py-2.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Log in</button>
+                    </a>
+                    <a href="{% url 'account_signup' %}">
+                        <button class="items-center block px-10 py-3 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Sign up</button>
+                    </a>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+</div>
+<div style="padding-left:15%; padding-top:4%; height:100%">
+    <div class="project" >
+        <div class="project-left">
+            {% if freelancer.profile_pic %}
+            <div><img src="{{freelancer.profile_pic.url}}" style="border-radius:50%; height:250px; width:250px"></div>
+            {% endif %}
+        <div class="project-left-txt">
+                <h1 style="padding-top:15px;font-size:40px">Name: {{object.name}}</h1>
+                {% if object.skills %}
+            <h2>Skills: {{object.skills}}</h2>
+            {% else %}
+            <h3 >Skills have not been mentioned</h3>
+            {% endif %}
+            {% if object.tagline %}
+            <h2>Tagline: {{object.tagline}}</h2>
+            {% else %}
+            <h3 >Tagline not mentioned</h3>
+            {% endif %}
+            {% if object.website %}
+            <h2>Website: <a href="{{object.website}}" style="color:blue">{{object.website}}</a></h2>
+            {% endif %}
+              </div>
+        </div>
+        <div class="project-right">
+            <h1>Bio:</h1>
+            <div class="project-right-txt">
+                {% if object.bio %}
+                <h3>{{object.bio}}</h3>
+                {% else %}
+                <h3>No bio or experiences mentioned</h3>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

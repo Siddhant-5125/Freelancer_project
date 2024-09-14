@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  height: 92vh;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  background-color: #f5f5dc;
+  background-image: url(https://images.unsplash.com/photo-1489769002049-ccd828976a6c?q=80&w=1961&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+<!--  background-size: cover;-->
+<!--  background-position: center;-->
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+  width: 600px;
+  height: 550px;
+  position: absolute;
+  left: 15%;
+  top: 25%;
+  background-color: #ffffff;
+  padding: 10px 30px;
+}
+
+.card_title {
+  text-align: center;
+  padding: 10px;
+}
+
+.card_title h1 {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+#loginbutton{
+  background-color: #4796ff;
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  padding: 8px 15px;
+  width: 100%;
+}
+
+.form input {
+  margin: 10px 0;
+  width: 100%;
+  background-color: #e2e2e2;
+  border: none;
+  outline: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+}
+
+#signup {
+
+  background-color: #4796ff;
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  padding: 8px 15px;
+  width: 100%;
+}
+
+
+.form button {
+  background-color: #4796ff;
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  padding: 8px 15px;
+  width: 100%;
+}
+
+.card_terms {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.card_terms input[type="checkbox"] {
+  background-color: #e2e2e2;
+}
+
+.card_terms span {
+  margin: 5px;
+  font-size: 13px;
+}
+
+.card a {
+  color: #4796ff;
+  text-decoration: none;
+}
+
+#text {
+    position: absolute;
+    left:60%
+}
+
+#text>h1 {
+    color: rgb(0, 0, 0);
+    font-size: 100px;
+    line-height: 100px;
+    font-weight: 500;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#text>h2 {
+    color: rgb(0, 0, 0);
+    font-size: 100px;
+    line-height: 100px;
+    font-weight: 500;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+#exp {
+  height: 60px;
+  width: 300px;
+  position: absolute;
+  top:110%;
+
+  background-color: white;
+  border-radius: 40px;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+  text-align: center;
+  transition: background-color 1s ease-in-out ;
+  transition: font-size 1s ease-in-out;
+
+   }
+
+  #a {
+    text-decoration: none;
+    font-family:cursive
+  }
+
+
+
+
+#exp:hover {
+  background-color: black;
+  color: goldenrod;
+  font-size: 16px;
+
+}
+
+  #signup {
+
+  background-color: #4796ff;
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  padding: 8px 15px;
+  width: 100%;
+}
+
+    </style>
+
+</head>
+<body>
+<div class=" w-full max-w-full mx-auto ">
+        <div class="flex flex-col max-w-full p-5 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 border-b">
+            <div class="flex flex-row items-center justify-between lg:justify-start">
+                <a href="{% url 'home' %}" class="text-3xl font-bold tracking-tighter text-blue-600 transition duration-500 ease-in-out transform tracking-relaxed lg:pr-8"> Freelancers </a>
+            </div>
+
+            <nav class="flex-col items-center flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row lg:pl-2">
+
+
+                <div class="inline-flex items-center gap-2 list-none lg:ml-auto">
+                    {% if user.is_authenticated %}
+                    <p>{{user.email}}</p>
+                    {% if user.freelancer.profile_pic %}
+                    <img class="w-10 border rounded-full mr-4" src="{{ user.freelancer.profile_pic.url }}" alt="Profile pic">
+                    {% endif %}
+                    {% if user.business.profile_pic %}
+                    <img class="w-10 border rounded-full mr-4" src="{{ user.business.profile_pic.url }}" alt="Profile pic">
+                    {% endif %}
+                    <form action="{% url 'account_logout' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="items-center block px-10 py-2.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Logout</button>
+                    </form>
+                    {% else %}
+                    <a href="{% url 'account_login' %}">
+                        <button class="items-center block px-10 py-2.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 bg-white">Log in</button>
+                    </a>
+                    <a href="{% url 'account_signup' %}">
+                        <button class="items-center block px-10 py-3 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Sign up</button>
+                    </a>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+    <div class="container">
+        <div class="card">
+          <div class="card_title">
+            <h1>Create Account</h1>
+            <span>Already have an account? <a href="{% url 'account_login' %}">Log in here.</a></span>
+          </div>
+          <div class="form">
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" id="signup" value="Signup">
+            </form>
+
+          </div>
+<!--          <div class="card_terms">-->
+<!--              <input type="checkbox" name="" id="terms"> <span>I have read and agree to the <a href="#">Terms of Service</a></span>-->
+<!--          </div>-->
+        </div>
+
+        <div id="text">
+            <h1>Explore <i class="ri-macbook-line"></i></h1>
+            <h2> Freelancing.</h2>
+
+            <!-- <a id="a" href="#"> <div id="exp"> <H1>Explore More  <i class="ri-arrow-right-line"></i> </H1> </div>  </a> -->
+
+        </div>
+
+
+
+      </div>
+</body>
+</html>
+
+
+

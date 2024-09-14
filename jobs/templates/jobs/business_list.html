@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <!-- <link rel="stylesheet" href="businesscards.css"> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    color: #000000;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+
+    background-color: #e0f7fa;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card-freelancer {
+
+    width: 70%;
+    height: 250px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    padding: 1.2%;
+    margin: 1.5%;
+    color: #000000;
+}
+
+.card-left {
+    width: 20%;
+    height: 85%;
+
+    border-radius: 50%;
+    /* background-image: url(https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: center; */
+}
+
+.card-right {
+    width: 70%;
+    margin-left: 3%;
+    display: table-column;
+    position: relative;
+}
+
+.card-right h2 {
+    font-weight: 500;
+    margin: .5%;
+    font-size: 1.4rem;
+    line-height: 1.2;
+}
+
+.card-right button {
+     position: absolute;
+    width: 26%;
+    height: 20%;
+    font-size: 1rem;
+    border-radius: 25px;
+    top: 80%;
+    left: 50%;
+    background-color: rgb(15, 99, 225);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.4s ease-in-out, background-color 0.3s ease-in-out;
+    right: 2%;
+}
+
+.card-right button:hover {
+    transform: translateY(-2%) scale(1.1);
+    background-color: #003d7a;
+}
+
+#name {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+    </style>
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<div class=" w-full max-w-full mx-auto" style="background-image: url('https://images.unsplash.com/photo-1588420343618-6141b3784bce?q=80&w=2612&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');" >
+        <div class="flex flex-col max-w-full p-5 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 border-b" style="background-color:white">
+            <div class="flex flex-row items-center justify-between lg:justify-start">
+                <a href="{% url 'home' %}" class="text-3xl font-bold tracking-tighter text-blue-600 transition duration-500 ease-in-out transform tracking-relaxed lg:pr-8"> Freelancers </a>
+            </div>
+
+            <nav class="flex-col items-center flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row lg:pl-2">
+
+
+                <div class="inline-flex items-center gap-2 list-none lg:ml-auto">
+                    {% if user.is_authenticated %}
+                    <p>{{user.email}}</p>
+                    {% if user.freelancer.profile_pic %}
+                    <img class="w-10 border rounded-full mr-4" src="{{ user.freelancer.profile_pic.url }}" alt="Profile pic">
+                    {% endif %}
+                    {% if user.business.profile_pic %}
+                    <img class="w-10 border rounded-full mr-4" src="{{ user.business.profile_pic.url }}" alt="Profile pic">
+                    {% endif %}
+                    <form action="{% url 'account_logout' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="items-center block px-10 py-2.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Logout</button>
+                    </form>
+                    {% else %}
+                    <a href="{% url 'account_login' %}">
+                        <button class="items-center block px-10 py-2.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Log in</button>
+                    </a>
+                    <a href="{% url 'account_signup' %}">
+                        <button class="items-center block px-10 py-3 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Sign up</button>
+                    </a>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+    <div style="text-allign:center; padding-top:20px; padding-left:39%"><h1 style="color:white; font-size:50px">List of Projects</h1></div>
+    <div style="padding-left:20%; padding-top:20px">
+    {% for business in object_list %}
+    <div class="card-freelancer">
+
+        <div class="card-right">
+            <h2 id="name" style="padding-top:20px">Project: {{business.name}} </h2>
+            <h2 id="type" style="padding-top:10px"> Domain: {{business.domain}}</h2>
+            <h2 id="type" style="padding-top:10px; padding-bottom: 50px"> Hiring: {{business.applications}}</h2>
+            <a href="{% url 'business-detail' business.pk %}"><button><h2 style="color:white">More Details</h2></button></a>
+        </div>
+            {% if business.profile_pic %}
+            <div class="card-left">
+                <img src="{{business.profile_pic.url}}" style="height: 100%; width: 100%; border-radius: 50%;">
+            </div>
+            {% endif %}
+    </div>
+
+    {% endfor %}
+        </div>
+</body>
+</html>
+
