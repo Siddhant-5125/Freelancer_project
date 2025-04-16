@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Edit Freelancer Profile</title>
+</head>
+<body>
+    <nav class="flex-col items-center flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row lg:pl-2">
+
+
+        <div class="inline-flex items-center gap-2 list-none lg:ml-auto">
+            {% if user.is_authenticated %}
+            <p>{{user.email}}</p>
+            {% if user.freelancer.profile_pic %}
+            <img class="w-10 border rounded-full mr-4" src="{{ user.freelancer.profile_pic.url }}" alt="Profile pic">
+            {% endif %}
+            {% if user.business.profile_pic %}
+            <img class="w-10 border rounded-full mr-4" src="{{ user.business.profile_pic.url }}" alt="Profile pic">
+            {% endif %}
+            <form action="{% url 'account_logout' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="items-center block px-10 py-2.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Logout</button>
+            </form>
+            {% else %}
+            <a href="{% url 'account_login' %}">
+                <button class="items-center block px-10 py-2.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Log in</button>
+            </a>
+            <a href="{% url 'account_signup' %}">
+                <button class="items-center block px-10 py-3 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Sign up</button>
+            </a>
+            {% endif %}
+        </div>
+    </nav>
+    <!--<div class="nav">
+        <div class="nav-logo">
+            <img src="freelancer-removebg-preview.png" alt="logo">
+        </div>
+        <div class="nav-search">
+            <input placeholder="Search freelancer" class="search-2">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </div>
+        <div class="nav-part2">
+            <div class="div-items"><a href=""><i class="fa-solid fa-globe"></i> English</a></div>
+            <div class="div-items"><a href="">Pro</a></div>
+            <div class="div-items"><a href="">Explore</a></div>
+            <div class="div-items"><a href="">Sign in</a></div>
+            <div class="div-items"><button>JOIN</button></div>
+        </div>
+    </div>-->
+    <div id="container-box">
+        <div id="panel">
+            <h1><i class="fa-regular fa-pen-to-square"></i>Edit Profile:</h1>
+            <form id="input-container">
+                <div class="input-column">
+                    <div class="left-column">
+                        <label>Name:</label><br>
+                        <input type="text" id="name" placeholder=" Enter your name..."><br>
+                    </div>
+                    <div class="left-column">
+                        <label>Email:</label><br>
+                        <input type="email" id="email" placeholder=" Enter valid e-mail..."><br>
+                    </div>
+                    <div class="left-column">
+                        <label>Status:</label><br>
+                        <input type="text" id="status" placeholder=" Enter status..."><br>
+                    </div>
+                </div>
+                <div class="input-column">
+                    <div class="left-column" id="pfp-box">
+                        <label>Profile picture:</label><br>
+                        <button type="menu" id="pfp"><i class="fa-solid fa-upload"></i> Choose file</button><span style="font-size: 12px;"> Maximum (512x512)px</span><br><br>
+                    </div>
+                    <div class="left-column" id="bio-box">
+                        <label>Bio:</label><br>
+                        <textarea placeholder=" Enter your bio..."></textarea><br>
+                    </div>
+                    <div class="left-column" id="linking">
+                        <label>Website:</label><br>
+                        <input type="text" id="website" placeholder=" Link your website...">
+                    </div>
+                    <div class="left-column" id="changes-buttons">
+                        <button id="discard-button"><i class="fa-solid fa-xmark"></i> DISCARD</button>
+                        <button id="save-button" type="submit"><i class="fa-solid fa-check"></i><a href="/viewpfp.html"> SAVE</a></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

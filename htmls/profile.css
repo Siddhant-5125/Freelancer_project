@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body{
+    height: 100%;
+    width:100%;
+  background-color: #ebe9e9 ; 
+} 
+
+.nav {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background:rgb(19, 102, 226);
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    padding: 0 0;
+}
+
+.nav-logo img {
+    height: 60px;
+    width: auto;
+}
+
+.nav-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+    height: 50px;
+    border-radius: 25px;
+    background-color: white;
+    padding: 0 15px;
+}
+
+.search-2 {
+    width: 85%;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    color: black;
+    background-color: transparent;
+}
+
+.search-icon {
+    font-size: 1.2rem;
+    color: rgb(19, 102, 226);
+}
+
+.nav-part2 {
+    height: auto;
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    
+}
+
+.div-items {
+    margin: 1em 15px;
+    font-size: 1.1rem;
+}
+
+.div-items a {
+    text-decoration: none;
+    color: white;
+    /*font-weight: 600;*/
+    transition: color 0.3s ease-in-out;
+}
+
+.div-items button {
+    padding: 12px 25px;
+    border-radius: 50px;
+    background-color: rgb(19, 102, 226);
+    color: white;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.div-items button:hover {
+    background-color: white;
+    color: rgb(19, 102, 226);
+}
+
+.div-items a:hover{
+    /*border: solid white ;*/
+    text-decoration: underline;
+}
+
+#container-box{
+    display: flex;
+    width: 100%;
+    /*position: absolute;*/
+    margin: 150px auto 20px;
+    justify-content: center;
+}
+
+#panel{
+    background-color: white;
+    width:80%;
+    height: 500px;
+    border: solid 2px transparent;
+    border-radius: 20px;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0,0.2);
+    padding: 40px 50px;
+}
+
+#input-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#input-container label{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.input-column{
+    height: 100%;
+    width: 50%;
+    padding-top: 40px;
+}
+
+.left-column{
+    height: 30%;
+    max-height: 30%;
+    width: 100%;
+}
+
+#pfp-box button{
+    height: 40%;
+    width: 25%;
+    outline: none;
+    color: white;
+    background-color: black; /*Site theme color here*/
+    border: solid transparent 1px;
+    border-radius: 30px;
+}
+
+#pfp-box button:active{
+    color: black;
+    background-color: white;
+    border: solid black 1px;
+}
+
+.left-column input{
+    width: 80%;
+    height: 30%;
+    outline: none;
+    border: solid transparent 1px;
+    border-radius: 5px;
+    padding: 0 5px;
+}
+
+.left-column textarea{
+    resize: none;
+    border: solid 1px transparent;
+    border-radius: 5px;
+    width: 80%;
+    height: 60%;
+    padding: 5px;
+}
+
+.left-column textarea, .left-column input{
+    background-color: rgb(235,233,233);
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0,0.2);
+}
+
+#pfp-box{
+    height: 20%;
+}
+
+#bio-box{
+    height: 40%;
+}
+
+#linking{
+    height:30%;
+}
+
+#changes-buttons{
+    height: 10%;
+    display: flex;
+    justify-content: right;
+}
+
+#changes-buttons button{
+    outline: none;
+    border: solid black 2px;
+    margin-right: 20px;
+    border-radius: 10px;
+    padding: 3px 5px;
+    font-weight: 600;
+}
+
+#changes-buttons #save-button{
+    margin-right: 20%;
+    background: black;
+    color:white;
+}
+
+#changes-buttons button:hover{
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0,0.2);
+    cursor: pointer;
+}
+
+#save-button a{
+    text-decoration: none;
+    color: white;
+}
+
+#bio-box input{
+    height: 60%;
+}

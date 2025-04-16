@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap'); /* Updated font family */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Poppins', sans-serif;
+    color: #ffffff; */
+    font-family: 'Roboto', sans-serif; /* Updated font family */
+     /* color: #e0e0e0; Updated font color */
+}
+html , body{
+    width: 100%;
+    height: 100%;
+}
+body{
+    height: 100%;
+    width: 100%;
+     padding: 2% 2%;
+     /* background-color: black; */
+     /* background: #230202; */
+     /* background: linear-gradient(90deg, #ff007a, #4a00e0); */
+     background: linear-gradient(90deg, #e0e0e0, #ffffff);
+     /* background-color: #f5f5f5; */
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-evenly;
+}
+
+.card-freelancer{
+    width: 45%;
+    height: 45%;
+    /* background-color: rgb(5, 52, 52); */
+    background-color: rgb(5, 52, 52);
+    border-radius: 2%;
+    box-shadow: 0px 0px 10px rgba(239, 239, 237, 0.7);
+    display: flex;
+    /* align-items: center; */
+    padding: 1.2%;
+    margin: 1.5%;
+    transition: transform 0.5s ease, background-color 0.5s ease;
+    color: #e0e0e0;
+}
+.card-freelancer:hover{
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.7);
+    color: black;
+}
+
+.card-left{
+    width: 40%;
+    height: 95%;
+    background-color: white;
+    border-radius: 5%;
+    background-image: url(https://thumbs.dreamstime.com/z/portrait-documents-passport-photo-young-female-natural-look-140680578.jpg?w=360);
+    background-size: cover;
+    background-position:top;
+}
+.card-right{
+    margin-left: 3%;
+    display: table-column;
+
+}
+.card-right h2{
+    font-weight: 450;
+    /* color: black; */
+    margin: 1%;
+}
